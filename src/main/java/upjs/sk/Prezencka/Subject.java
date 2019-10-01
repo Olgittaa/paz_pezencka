@@ -20,10 +20,6 @@ public class Subject {
 
 	}
 
-	public void deactivateStudent(String studentName) {
-
-	}
-
 	public void modifyStudent(String newName, String oldName) {
 
 	}
