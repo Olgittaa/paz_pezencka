@@ -29,8 +29,12 @@ public class SubjectEditController {
 	@FXML
 	private TableView<String> studentTableView;
 
+	private SubjectDAO subjectDAO = DAOFactory.INSTANCE.getSubjectDAO();
+	
 	@FXML
 	void initialize() {
+		System.out.println(subjectDAO.getAll());
+		
 		List<String> students = new ArrayList<>();
 
 		ObservableList<String> studentsModel = FXCollections.observableArrayList(students);
