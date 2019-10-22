@@ -3,7 +3,8 @@ package upjs.sk.Prezencka;
 import java.util.List;
 
 public class Subject {
-
+	
+	private Long id;
 	private String name;
 	private List<String> students;
 	private List<Practice> practices;
