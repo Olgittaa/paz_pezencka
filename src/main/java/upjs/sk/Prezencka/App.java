@@ -10,8 +10,8 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		SubjectEditController controller=new SubjectEditController();
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SubjectEdit.fxml"));
+		MainController controller=new MainController();
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MainWindow.fxml"));
 		fxmlLoader.setController(controller);
 		Parent parent = fxmlLoader.load();
 		Scene scene = new Scene(parent);

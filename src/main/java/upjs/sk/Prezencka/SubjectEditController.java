@@ -1,49 +1,49 @@
 package upjs.sk.Prezencka;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class SubjectEditController {
 
 	@FXML
 	private ListView<String> studentListView;
+
 	@FXML
 	private TextField addStudentTextField;
 
 	@FXML
 	private Button addStudentButton;
-	@FXML
-	private TableView<String> studentTableView;
 
-	private SubjectDAO subjectDAO = DAOFactory.INSTANCE.getSubjectDAO();
-	
+	@FXML
+	private TextField subjectNametTextField;
+
+	@FXML
+	private Button saveButton;
+
+	private SubjectFxModel subjectModel;
+	private Subject savedSubject;
+
+	public SubjectEditController(Subject selectedSubject) {
+		subjectModel = new SubjectFxModel();
+		subjectModel.load(selectedSubject);
+	}
+
+	public SubjectEditController() {
+		subjectModel = new SubjectFxModel();
+	}
+
 	@FXML
 	void initialize() {
-		System.out.println(subjectDAO.getAll());
-		
-		List<String> students = new ArrayList<>();
-
-		ObservableList<String> studentsModel = FXCollections.observableArrayList(students);
-		studentListView.setItems(studentsModel);
-		studentTableView.setItems(studentsModel);
-		TableColumn<String, String> nameColumn = new TableColumn<String, String>("Meno študenta");
-		nameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()));
-		studentTableView.getColumns().add(nameColumn);
-
+		subjectNametTextField.textProperty().bindBidirectional(subjectModel.nameProperty());
+		studentListView.setItems(subjectModel.getStudents());
 		addStudentTextField.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
@@ -61,9 +61,26 @@ public class SubjectEditController {
 			@Override
 			public void handle(ActionEvent event) {
 				String studentName = addStudentTextField.getText();
-				studentsModel.add(studentName);
+				subjectModel.getStudents().add(studentName);
 				addStudentTextField.setText("");
 			}
 		});
+	}
+
+	@FXML
+	void saveButtonClick(ActionEvent event) {
+		if (subjectModel.getName() == null || subjectModel.getName().trim().isEmpty()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Nemozem ulozit");
+			alert.setHeaderText("Predmet nema nazov");
+			alert.setContentText("Zaplnte nazov");
+			alert.show();
+		} else {
+			this.savedSubject=DAOFactory.INSTANCE.getSubjectDAO().save(subjectModel.getSubject());
+			saveButton.getScene().getWindow().hide();
+		}
+	}
+	public Subject getSavedSubject() {
+		return savedSubject;
 	}
 }

@@ -1,12 +1,12 @@
 package upjs.sk.Prezencka;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Subject {
 	private Long id;
 	private String name;
-	private List<String> students;
-	private List<Practice> practices;
+	private List<String> students=new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -28,20 +28,12 @@ public class Subject {
 		this.students = students;
 	}
 
-	public void setPractices(List<Practice> practices) {
-		this.practices = practices;
-	}
-
 	public List<String> getStudents() {
 		return students;
 	}
 
-	public List<Practice> getPractices() {
-		return practices;
-	}
-
 	public void addStudent(String studentName) {
-
+		
 	}
 
 	public void modifyStudent(String newName, String oldName) {
@@ -49,8 +41,33 @@ public class Subject {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+	@Override
 	public String toString() {
-		return "Subject [id=" + id + ", name=" + name + ", students=" + students + ", practices=" + practices + "]";
+		return name;
 	}
 
 	public String getPresentsOfAll() {
