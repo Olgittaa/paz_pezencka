@@ -1,4 +1,4 @@
-package upjs.sk.Prezencka;
+package upjs.sk.Prezencka.storage;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 

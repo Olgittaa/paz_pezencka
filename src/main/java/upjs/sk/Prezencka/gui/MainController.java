@@ -1,4 +1,4 @@
-package upjs.sk.Prezencka;
+package upjs.sk.Prezencka.gui;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import upjs.sk.Prezencka.storage.DAOFactory;
+import upjs.sk.Prezencka.storage.Subject;
+import upjs.sk.Prezencka.storage.SubjectDAO;
 
 public class MainController {
 	

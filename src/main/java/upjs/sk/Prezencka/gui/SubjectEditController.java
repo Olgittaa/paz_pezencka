@@ -1,4 +1,4 @@
-package upjs.sk.Prezencka;
+package upjs.sk.Prezencka.gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -7,6 +7,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import upjs.sk.Prezencka.storage.DAOFactory;
+import upjs.sk.Prezencka.storage.Subject;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;

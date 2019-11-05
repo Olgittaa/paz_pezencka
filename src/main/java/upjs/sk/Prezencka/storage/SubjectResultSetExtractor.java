@@ -1,4 +1,4 @@
-package upjs.sk.Prezencka;
+package upjs.sk.Prezencka.storage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

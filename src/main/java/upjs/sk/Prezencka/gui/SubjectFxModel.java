@@ -1,9 +1,10 @@
-package upjs.sk.Prezencka;
+package upjs.sk.Prezencka.gui;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import upjs.sk.Prezencka.storage.Subject;
 
 public class SubjectFxModel {
 
